@@ -4,7 +4,7 @@
 
 function get_client_ip($config) {
     // return '213.180.207.123'; // part of 213.180.192.0/19    ==> OK
-    return '2a01:4f8:c17:6648:3a2f:9c11:4b7d:82c1';    //part of 2a01:4f8:c17:6648::/64 ==> OK
+    // return '2a01:4f8:c17:6648:3a2f:9c11:4b7d:82c1';    //part of 2a01:4f8:c17:6648::/64 ==> OK
     // Get client IP for the current request, get it from XFF or REMOTE_ADDR
     //  end user should have configured if they are behind a reverse proxy or not. 
     $src = $config['ip_source'] ?? 'remote';
