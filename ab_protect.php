@@ -12,7 +12,7 @@
 
 
 $config = include __DIR__ . '/ab_config.php';
-include_once('ab_ip_handling.php'); 
+include_once(__DIR__ .'ab_ip_handling.php'); 
 // If protection disabled, do nothing ==> allow all
 if (empty($config['enabled'])) {
     return;
@@ -48,7 +48,7 @@ foreach ($config['whitelist_paths'] as $prefix) {
 // IP whitelisting
 
 
-if (ip_is_whitelisted($clientIp, $config['ip_whitelist'], $config['goodbotfile'])) {
+if (ip_is_whitelisted($clientIp, $config['ip_whitelist'], __DIR__ . '/' . $config['goodbotfile'])) {
     return;
 }
 
@@ -96,8 +96,10 @@ if (!$sessionValid && !empty($_COOKIE[$ctcookie])) {
         }
     }
     //delete stale token files: 
-    include_once('ab_gc.php');
+    include_once(__DIR__ . 'ab_gc.php');
     gc_cleanup($capAllowDir, $config['ctoken_ttl']*1.1);
+    gc_cleanup($sessionsDir, $config['session_ttl']*1.1);
+
 }
 
 // If session valid ==>  allow access
@@ -109,7 +111,7 @@ if ($sessionValid) {
 $currentPath = $path;
 http_response_code(403);
 header('Content-Type: text/html; charset=utf-8');
-include_once('ab_challenge_document.php');
+include_once(__DIR__ . 'ab_challenge_document.php');
 die(); 
 
 

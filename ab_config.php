@@ -9,7 +9,7 @@ return [
     'enabled' => true,
 
     // Proof of work difficulty: the higher the longer it takes for clients, the less likely bots are going to pass. 
-    'difficulty' => 4,
+    'difficulty' => 3,
 
     // Nonce lifetime (seconds)
     'nonce_ttl' => 90,
@@ -49,8 +49,13 @@ return [
     //      e.g. : '/API/public/'
     //  Protection rules are replied recursively, any file/folder that is a child of an unprotected
     //      folder will not be protected either.
+    //  Allow access to ab_*files when implementing the tool on every request with an apache directive.
     'whitelist_paths' => [
-        '/ds/'
+        'ab_verify.php',
+        'ab_challenge.php',
+        'ab_get_captcha.php',
+        'ab_verify_captcha.php',
+        'ab_bot-check.js',
     ],
 
     // If true, require at least one user interaction (mouse/keyboard/touch)
