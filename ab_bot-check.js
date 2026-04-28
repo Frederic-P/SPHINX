@@ -236,6 +236,15 @@ function showCaptchaUI(capid){
       </div>
     </div>`;
 
+    
+  const input = document.getElementById('captcha-input');
+  input.addEventListener('keydown', async (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      document.getElementById('captcha-submit').click();
+    }
+  });
+
   const img = document.getElementById('captcha-img');
   const feedback = document.getElementById('captcha-feedback');
   const refreshBtn = document.getElementById('captcha-refresh');
@@ -338,6 +347,7 @@ function showCaptchaUI(capid){
       feedback.textContent = 'Network error';
     }
   });
+
 }
 
 
